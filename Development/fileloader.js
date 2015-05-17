@@ -24,8 +24,8 @@ Module.expectedDataFileDownloads++;
     var REMOTE_PACKAGE_NAME = typeof Module['locateFile'] === 'function' ?
                               Module['locateFile'](REMOTE_PACKAGE_BASE) :
                               ((Module['filePackagePrefixURL'] || '') + REMOTE_PACKAGE_BASE);
-    var REMOTE_PACKAGE_SIZE = 9430233;
-    var PACKAGE_UUID = 'c8475acd-407c-45c1-adba-6c1db2d463be';
+    var REMOTE_PACKAGE_SIZE = 18965073;
+    var PACKAGE_UUID = '4228473a-2d37-4c31-a2e0-1c86ca9c9bf3';
   
     function fetchRemotePackage(packageName, packageSize, callback, errback) {
       var xhr = new XMLHttpRequest();
@@ -123,11 +123,14 @@ Module['FS_createPath']('/', 'Resources', true, true);
         this.requests[this.name] = null;
       },
     };
-      new DataRequest(0, 94052, 0, 0).open('GET', '/mainData');
-    new DataRequest(94052, 94073, 0, 0).open('GET', '/methods_pointedto_by_uievents.xml');
-    new DataRequest(94073, 7355753, 0, 0).open('GET', '/sharedassets0.assets');
-    new DataRequest(7355753, 8916125, 0, 0).open('GET', '/Resources/unity_default_resources');
-    new DataRequest(8916125, 9430233, 0, 0).open('GET', '/Resources/unity_builtin_extra');
+      new DataRequest(0, 95100, 0, 0).open('GET', '/level0');
+    new DataRequest(95100, 194928, 0, 0).open('GET', '/mainData');
+    new DataRequest(194928, 194949, 0, 0).open('GET', '/methods_pointedto_by_uievents.xml');
+    new DataRequest(194949, 8949689, 0, 0).open('GET', '/sharedassets0.assets');
+    new DataRequest(8949689, 16862969, 0, 0).open('GET', '/sharedassets0.resource');
+    new DataRequest(16862969, 16890593, 0, 0).open('GET', '/sharedassets1.assets');
+    new DataRequest(16890593, 18450965, 0, 0).open('GET', '/Resources/unity_default_resources');
+    new DataRequest(18450965, 18965073, 0, 0).open('GET', '/Resources/unity_builtin_extra');
 
     function processPackageData(arrayBuffer) {
       Module.finishedDataFileDownloads++;
@@ -137,9 +140,12 @@ Module['FS_createPath']('/', 'Resources', true, true);
       
       // Reuse the bytearray from the XHR as the source for file reads.
       DataRequest.prototype.byteArray = byteArray;
+          DataRequest.prototype.requests["/level0"].onload();
           DataRequest.prototype.requests["/mainData"].onload();
           DataRequest.prototype.requests["/methods_pointedto_by_uievents.xml"].onload();
           DataRequest.prototype.requests["/sharedassets0.assets"].onload();
+          DataRequest.prototype.requests["/sharedassets0.resource"].onload();
+          DataRequest.prototype.requests["/sharedassets1.assets"].onload();
           DataRequest.prototype.requests["/Resources/unity_default_resources"].onload();
           DataRequest.prototype.requests["/Resources/unity_builtin_extra"].onload();
           Module['removeRunDependency']('datafile_UNSW-WEB-BUILDS.data');
